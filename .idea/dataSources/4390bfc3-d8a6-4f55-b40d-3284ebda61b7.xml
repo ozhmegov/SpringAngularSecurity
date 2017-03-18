@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="MySQL - authenticate@localhost">
+  <database-model serializer="dbm" rdbms="MYSQL" format-version="2.6">
+    <schema id="1" name="authenticate">
+      <visible>1</visible>
+    </schema>
+    <schema id="2" name="bookmanager"/>
+    <schema id="3" name="dbwebapp"/>
+    <schema id="4" name="information_schema"/>
+    <schema id="5" name="jpadb"/>
+    <schema id="6" name="mydbtest"/>
+    <schema id="7" name="mysql"/>
+    <schema id="8" name="performance_schema"/>
+    <schema id="9" name="railwaydb"/>
+    <schema id="10" name="sakila"/>
+    <schema id="11" name="sys"/>
+    <schema id="12" name="world"/>
+  </database-model>
+</dataSource>
