@@ -18,6 +18,9 @@ public class User {
     @Column(name = "password")
     private String password;
 
+    @Transient
+    private String confirmPassword;
+
     @ManyToMany
     @JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"),
                 inverseJoinColumns = @JoinColumn(name = "role_id"))
@@ -96,5 +99,23 @@ public class User {
      */
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
+    }
+
+    /**
+     * Gets confirmPassword.
+     *
+     * @return confirmPassword
+     */
+    public String getConfirmPassword() {
+        return confirmPassword;
+    }
+
+    /**
+     * Sets confirmPassword.
+     *
+     * @param confirmPassword the new value.
+     */
+    public void setConfirmPassword(String confirmPassword) {
+        this.confirmPassword = confirmPassword;
     }
 }
