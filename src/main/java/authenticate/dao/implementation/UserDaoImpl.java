@@ -22,10 +22,10 @@ public class UserDaoImpl extends GenericDaoImpl<User> implements UserDao {
     }
 
     @Override
-    public User getUserByName(String username) {
+    public User findByUsername(String username) {
         try{
             Query query = getEntityManager()
-                    .createQuery("FROM User u WHERE u.login=:username");
+                    .createQuery("FROM User u WHERE u.username=:username");
             query.setParameter("username", username);
             return (User) query.getSingleResult();
         } catch (Throwable e){

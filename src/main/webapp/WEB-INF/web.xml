@@ -4,8 +4,16 @@
          xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee
     http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
 
+    <!--Название-->
+    <display-name>Spring Security Application</display-name>
 
+    <!--Место хранения конфига spring-->
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>/src/main/webapp/WEB-INF/appconfig-root.xml</param-value>
+    </context-param>
 
+    <!--Стандартный сервлет-->
     <servlet>
         <servlet-name>mvc-dispatcher</servlet-name>
         <servlet-class>
@@ -19,8 +27,19 @@
         <url-pattern>/</url-pattern>
     </servlet-mapping>
 
-    <context-param>
-        <param-name>contextConfigLocation</param-name>
-        <param-value>/WEB-INF/mvc-dispatcher-servlet.xml</param-value>
-    </context-param>
+    <!--Фильтр-->
+    <filter>
+        <filter-name>springSecurityFilterChain</filter-name>
+        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>springSecurityFilterChain</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+
 </web-app>

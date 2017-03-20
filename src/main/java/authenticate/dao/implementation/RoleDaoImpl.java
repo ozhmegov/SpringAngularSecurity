@@ -1,15 +1,15 @@
 package authenticate.dao.implementation;
 
-import authenticate.dao.interfaces.UserRoleDao;
-import authenticate.model.UserRole;
+import authenticate.dao.interfaces.RoleDao;
+import authenticate.model.Role;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-public class UserRoleDaoImpl extends GenericDaoImpl<UserRole> implements UserRoleDao{
+public class RoleDaoImpl extends GenericDaoImpl<Role> implements RoleDao {
 
-    UserRoleDaoImpl() {
-        super(UserRole.class);
+    RoleDaoImpl() {
+        super(Role.class);
     }
 
     @PersistenceContext

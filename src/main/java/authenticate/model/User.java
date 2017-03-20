@@ -1,65 +1,66 @@
 package authenticate.model;
 
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import java.util.*;
 
 @Entity
-@Table(name="user")
-public class User implements UserDetails {
+@Table(name="users")
+public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "Id")
-    private int userId;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
 
-    @Column(name = "Login")
-    private String login;
+    @Column(name = "username")
+    private String username;
 
-    @Column(name = "Password")
+    @Column(name = "password")
     private String password;
+
+    @ManyToMany
+    @JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"),
+                inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<Role> roles;
 
     public User(){
     }
 
-    public User(String login, String password) {
-        this.login = login;
-        this.password = password;
-    }
-
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-//    @JoinTable(name="user_role", joinColumns = @JoinColumns(name="user_id"),
-//            inverseJoinColumns = @JoinColumns(name="role_id"))
-    private Set<UserRole> userRoles = new HashSet<UserRole>();
-
     /**
-     * Gets login.
+     * Gets id.
      *
-     * @return login.
+     * @return id.
      */
-    public String getLogin() {
-        return login;
+    public long getId() {
+        return id;
     }
 
     /**
-     * Sets login.
+     * Sets id.
      *
-     * @param login the new value.
+     * @param id the new value.
      */
-    public void setLogin(String login) {
-        this.login = login;
-    }
-    /**
-     * Sets password.
-     *
-     * @param password the new value.
-     */
-    public void setPassword(String password) {
-        this.password = password;
+    public void setId(long id) {
+        this.id = id;
     }
 
+    /**
+     * Gets username.
+     *
+     * @return username.
+     */
+    public String getUsername() {
+        return username;
+    }
+
+    /**
+     * Sets username.
+     *
+     * @param username the new value.
+     */
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
     /**
      * Gets password.
@@ -70,41 +71,30 @@ public class User implements UserDetails {
         return password;
     }
 
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        List<SimpleGrantedAuthority> result = new ArrayList<SimpleGrantedAuthority>();
-
-        for(UserRole userRole : userRoles){
-            result.add(new SimpleGrantedAuthority(userRole.getListRole().name()));
-        }
-
-        return result;
+    /**
+     * Sets password.
+     *
+     * @param password the new value.
+     */
+    public void setPassword(String password) {
+        this.password = password;
     }
 
-    @Override
-    public String getUsername() {
-        return null;
+    /**
+     * Gets roles.
+     *
+     * @return roles.
+     */
+    public Set<Role> getRoles() {
+        return roles;
     }
 
-    @Override
-    public boolean isAccountNonExpired() {
-        return true;
+    /**
+     * Sets roles.
+     *
+     * @param roles the new value.
+     */
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
     }
-
-    @Override
-    public boolean isAccountNonLocked() {
-        return true;
-    }
-
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return true;
-    }
-
-
 }
