@@ -22,11 +22,11 @@ public class UserDaoImpl extends GenericDaoImpl<User> implements UserDao {
     }
 
     @Override
-    public User findByUsername(String username) {
+    public User findByUsernameAndPassword(String username, String password) {
         try{
-            Query query = getEntityManager()
-                    .createQuery("FROM User u WHERE u.username=:username");
-            query.setParameter("username", username);
+            String sqlQuery = String.format("SELECT u FROM User AS u WHERE " +
+                    "u.username = '%s' AND u.password = '%s'",username, password);
+            Query query = getEntityManager().createQuery(sqlQuery);
             return (User) query.getSingleResult();
         } catch (Throwable e){
             return null;

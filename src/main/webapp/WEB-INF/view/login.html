@@ -1,10 +1,51 @@
-<!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular-route.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular-animate.js"></script>
 
+    <title>Login</title>
+</head>
+
+
+<body>
+<div class="container">
+    <div class="row"></div>
+    <div class="row">
+        <div class="col-lg-4"></div>
+        <div class="col-lg-4">
+            <form name="signin" role="form" ng-submit="authentication()">
+                <div class="form-group">
+                    <h2>Authentication</h2>
+                    <label for="login" class="sr-only">Login</label>
+                    <input type="text"
+                           name="login"
+                           id="login"
+                           class="form-control input-lg"
+                           ng-model="login"
+                           placeholder="Login"
+                           required
+                    >
+                    <br>
+                    <label for="password" class="sr-only">Password</label>
+                    <input type="password"
+                           name="password"
+                           id="password"
+                           class="form-control input-lg"
+                           ng-model="password"
+                           placeholder="Password" required
+                    ><br>
+
+                    <button type="submit" class="btn btn-lg btn-block login-button">Sign in</button>
+                </div>
+            </form>
+        </div>
+        <div class="col-lg-4">
+        </div>
+    </div>
+</div>
 </body>
 </html>

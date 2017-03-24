@@ -11,14 +11,32 @@ public class Role {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @Column(name = "name")
-    private String name;
+    @Enumerated(EnumType.STRING)
+    private ListRole listRole;
 
-    @ManyToMany(mappedBy = "roles")
+    @ManyToMany(mappedBy = "userRoles")
     private Set<User> users;
 
     public Role(){
 
+    }
+
+    /**
+     * Gets listRole.
+     *
+     * @return listRole.
+     */
+    public ListRole getListRole() {
+        return listRole;
+    }
+
+    /**
+     * Sets listRole.
+     *
+     * @param listRole the new value.
+     */
+    public void setListRole(ListRole listRole) {
+        this.listRole = listRole;
     }
 
     /**
@@ -37,24 +55,6 @@ public class Role {
      */
     public void setId(long id) {
         this.id = id;
-    }
-
-    /**
-     * Gets name.
-     *
-     * @return name.
-     */
-    public String getName() {
-        return name;
-    }
-
-    /**
-     * Sets name.
-     *
-     * @param name the new value.
-     */
-    public void setName(String name) {
-        this.name = name;
     }
 
     /**

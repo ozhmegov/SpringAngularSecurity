@@ -1,7 +1,5 @@
 package authenticate.model;
 
-import org.springframework.security.core.userdetails.UserDetails;
-
 import javax.persistence.*;
 import java.util.*;
 
@@ -18,13 +16,11 @@ public class User {
     @Column(name = "password")
     private String password;
 
-    @Transient
-    private String confirmPassword;
 
     @ManyToMany
     @JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"),
                 inverseJoinColumns = @JoinColumn(name = "role_id"))
-    private Set<Role> roles;
+    private Set<Role> userRoles;
 
     public User(){
     }
@@ -84,38 +80,20 @@ public class User {
     }
 
     /**
-     * Gets roles.
+     * Gets userRoles.
      *
-     * @return roles.
+     * @return userRoles.
      */
-    public Set<Role> getRoles() {
-        return roles;
+    public Set<Role> getUserRoles() {
+        return userRoles;
     }
 
     /**
-     * Sets roles.
+     * Sets userRoles.
      *
-     * @param roles the new value.
+     * @param userRoles the new value.
      */
-    public void setRoles(Set<Role> roles) {
-        this.roles = roles;
-    }
-
-    /**
-     * Gets confirmPassword.
-     *
-     * @return confirmPassword
-     */
-    public String getConfirmPassword() {
-        return confirmPassword;
-    }
-
-    /**
-     * Sets confirmPassword.
-     *
-     * @param confirmPassword the new value.
-     */
-    public void setConfirmPassword(String confirmPassword) {
-        this.confirmPassword = confirmPassword;
+    public void setUserRoles(Set<Role> userRoles) {
+        this.userRoles = userRoles;
     }
 }
